@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+		<PackageId>LogicBuilder.App.Web.Utils</PackageId>
+		<Authors>BlaiseD</Authors>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<WarningsAsErrors>true</WarningsAsErrors>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<Description>Library for web related utilities which are reusable across business applications.</Description>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>First release.</PackageReleaseNotes>
+		<PackageTags>linq expressions</PackageTags>
+		<Copyright>Copyright © BPS 2026</Copyright>
+		<RepositoryUrl>https://github.com/BpsLogicBuilder/LogicBuilder.App.Web.Utils</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/BpsLogicBuilder/LogicBuilder</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.png</PackageIcon>
+		<AssemblyOriginatorKeyFile>..\LogicBuilder.Rules.snk</AssemblyOriginatorKeyFile>
+		<SignAssembly>true</SignAssembly>
+		<MinVerTagPrefix>v</MinVerTagPrefix>
+		<DebugType>embedded</DebugType>
+		<Deterministic>true</Deterministic>
+		<EmbedAllSources>true</EmbedAllSources>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+</Project>
