@@ -16,6 +16,11 @@ namespace LogicBuilder.App.Web.Utils.Tests
         private readonly Mock<IHttpClientFactory> _mockHttpClientFactory;
         private readonly HttpClientHelper _httpClientHelper;
 
+        private static readonly JsonSerializerOptions serializationOptions = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
         public HttpClientHelperTest()
         {
             _mockHttpClientFactory = new Mock<IHttpClientFactory>();
@@ -97,10 +102,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
         {
             // Arrange
             var expectedResult = new TestModel { Id = 1, Name = "Test" };
-            var jsonResponse = JsonSerializer.Serialize(expectedResult, new JsonSerializerOptions 
-            { 
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
-            });
+            var jsonResponse = JsonSerializer.Serialize(expectedResult, serializationOptions);
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
             using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
@@ -199,10 +201,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             // Arrange
             var expectedResult = new TestModel { Id = 1, Name = "Test" };
             var jsonRequest = JsonSerializer.Serialize(new { Name = "Test" });
-            var jsonResponse = JsonSerializer.Serialize(expectedResult, new JsonSerializerOptions 
-            { 
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
-            });
+            var jsonResponse = JsonSerializer.Serialize(expectedResult, serializationOptions);
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
             using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
@@ -301,10 +300,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             // Arrange
             var expectedResult = new TestModel { Id = 1, Name = "Updated Test" };
             var jsonRequest = JsonSerializer.Serialize(expectedResult);
-            var jsonResponse = JsonSerializer.Serialize(expectedResult, new JsonSerializerOptions 
-            { 
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
-            });
+            var jsonResponse = JsonSerializer.Serialize(expectedResult, serializationOptions);
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
             using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
