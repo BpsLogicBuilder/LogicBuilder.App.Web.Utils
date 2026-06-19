@@ -1,3 +1,4 @@
+* 2026-06-19 - AB#161: Add MinVer for automatic versioning.
 * 2026-06-19 - AB#161: Sonar recommendations.
 * 2026-06-19 - AB#161: CodeQL recommendations.
 * 2026-06-19 - AB#161: Add CI/CD workflows and update ReadMe.
