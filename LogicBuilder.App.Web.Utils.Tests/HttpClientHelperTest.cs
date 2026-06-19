@@ -31,7 +31,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             var expectedResult = new TestModel { Id = 1, Name = "Test" };
             var jsonResponse = JsonSerializer.Serialize(expectedResult);
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -49,7 +49,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
         {
             // Arrange
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.NotFound, "Not Found");
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -65,7 +65,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             // Arrange
             var invalidJson = "{ invalid json }";
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, invalidJson);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -81,7 +81,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             // Arrange
             var jsonResponse = "null";
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -102,7 +102,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
             });
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -129,7 +129,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             var jsonResponse = JsonSerializer.Serialize(expectedResult);
             var jsonRequest = JsonSerializer.Serialize(new { Name = "Test" });
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -148,7 +148,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             // Arrange
             var jsonRequest = JsonSerializer.Serialize(new { Name = "Test" });
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.BadRequest, "Bad Request");
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -165,7 +165,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             var jsonRequest = JsonSerializer.Serialize(new { Name = "Test" });
             var invalidJson = "{ invalid json }";
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, invalidJson);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -182,7 +182,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             var jsonRequest = JsonSerializer.Serialize(new { Name = "Test" });
             var jsonResponse = "null";
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -204,7 +204,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
             });
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -231,7 +231,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             var jsonResponse = JsonSerializer.Serialize(expectedResult);
             var jsonRequest = JsonSerializer.Serialize(expectedResult);
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -250,7 +250,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             // Arrange
             var jsonRequest = JsonSerializer.Serialize(new { Id = 1, Name = "Test" });
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.InternalServerError, "Server Error");
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -267,7 +267,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             var jsonRequest = JsonSerializer.Serialize(new { Id = 1, Name = "Test" });
             var invalidJson = "{ invalid json }";
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, invalidJson);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -284,7 +284,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
             var jsonRequest = JsonSerializer.Serialize(new { Id = 1, Name = "Test" });
             var jsonResponse = "null";
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -306,7 +306,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
             });
             var mockHttpMessageHandler = CreateMockHttpMessageHandler(HttpStatusCode.OK, jsonResponse);
-            var httpClient = new HttpClient(mockHttpMessageHandler.Object);
+            using var httpClient = new HttpClient(mockHttpMessageHandler.Object);
             
             _mockHttpClientFactory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
@@ -335,7 +335,7 @@ namespace LogicBuilder.App.Web.Utils.Tests
                     ItExpr.IsAny<HttpRequestMessage>(),
                     ItExpr.IsAny<CancellationToken>()
                 )
-                .ReturnsAsync(new HttpResponseMessage
+                .ReturnsAsync(() => new HttpResponseMessage
                 {
                     StatusCode = statusCode,
                     Content = new StringContent(content)
