@@ -15,12 +15,8 @@ namespace LogicBuilder.App.Web.Utils
 
         public async Task<TResult> GetAsync<TResult>(string url, JsonSerializerOptions? options = null)
         {
-            HttpResponseMessage result;
-            using (HttpClient httpClient = _httpClientFactory.CreateClient())
-            {
-                result = await httpClient.GetAsync(url);
-            }
-
+            using HttpClient httpClient = _httpClientFactory.CreateClient();
+            using HttpResponseMessage result = await httpClient.GetAsync(url);
             result.EnsureSuccessStatusCode();
 
             return JsonSerializer.Deserialize<TResult>
@@ -32,12 +28,8 @@ namespace LogicBuilder.App.Web.Utils
 
         public async Task<TResult> PostAsync<TResult>(string url, string jsonObject, JsonSerializerOptions? options = null)
         {
-            HttpResponseMessage result;
-            using (HttpClient httpClient = _httpClientFactory.CreateClient())
-            {
-                result = await httpClient.PostAsync(url, GetStringContent(jsonObject));
-            }
-
+            using HttpClient httpClient = _httpClientFactory.CreateClient();
+            using HttpResponseMessage result = await httpClient.PostAsync(url, GetStringContent(jsonObject));
             result.EnsureSuccessStatusCode();
 
             return JsonSerializer.Deserialize<TResult>
@@ -49,12 +41,8 @@ namespace LogicBuilder.App.Web.Utils
 
         public async Task<TResult> PutAsync<TResult>(string url, string jsonObject, JsonSerializerOptions? options = null)
         {
-            HttpResponseMessage result;
-            using (HttpClient httpClient = _httpClientFactory.CreateClient())
-            {
-                result = await httpClient.PutAsync(url, GetStringContent(jsonObject));
-            }
-
+            using HttpClient httpClient = _httpClientFactory.CreateClient();
+            using HttpResponseMessage result = await httpClient.PutAsync(url, GetStringContent(jsonObject));
             result.EnsureSuccessStatusCode();
 
             return JsonSerializer.Deserialize<TResult>
